@@ -1,0 +1,33 @@
+name: Build CPATracker
+
+on:
+  push:
+    tags:
+      - 'v1.0'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.6.0'
+
+      - name: Build
+        run: |
+          mkdir build && cd build
+          cmake .. -DCMAKE_PREFIX_PATH=$Qt6_DIR
+          cmake --build . --config Release
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: CPATracker-${{ matrix.os }}
+          path: build/**
