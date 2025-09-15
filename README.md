@@ -19,10 +19,7 @@ It allows students to manage and calculate their **Course Performance Average (C
 - **CMake 3.20+**
 - C++17 compiler (GCC / Clang / MSVC)
 
-### Installation Guide
-
-#### Environment
-Make sure you have installed:
+Download below here:
 - [Qt 6](https://www.qt.io/download)
 - [CMake](https://cmake.org/download/)
 - [Git](https://git-scm.com/)
