@@ -30,22 +30,20 @@ set(HEADERS
     pkg/Sort.h
 )
 
-add_executable(cpatracker ${SOURCES} ${HEADERS})
-
 add_executable(CPATracker MACOSX_BUNDLE
     ${SOURCES}
     ${HEADERS}
 )
 
 # Tell the compiler where to find headers
-target_include_directories(cpatracker PRIVATE
+target_include_directories(CPATracker PRIVATE
     ${CMAKE_SOURCE_DIR}/gui
     ${CMAKE_SOURCE_DIR}/pkg
     ${CMAKE_SOURCE_DIR}/main
 )
 
 # Link Qt libs
-target_link_libraries(cpatracker PRIVATE
+target_link_libraries(CPATracker PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets
