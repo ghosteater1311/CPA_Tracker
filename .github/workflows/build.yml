@@ -54,14 +54,17 @@ jobs:
           cp resources/icons/CPATracker.png build/
           ./linuxdeployqt-continuous-x86_64.AppImage build/CPATracker -appimage \
 
+      - name: Show build outputs
+        run: ls -R build
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: CPATracker-${{ matrix.os }}
           path: |
-            build/**/*.exe        # Windows
-            build/**/*.app        # macOS
-            build/*.AppImage      # Linux
+            build/Release/*.exe # Windows
+            build/Release/*.app # macOS
+            build/*.AppImage # Linux
           if-no-files-found: warn
           compression-level: 6
           overwrite: false
