@@ -76,4 +76,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: CPATracker-Linux
-          path: build/*.AppImage
+          path: build/CPATracker-*.AppImage
+          if-no-files-found: error
+          compression-level: 6
+          overwrite: false
+          include-hidden-files: false
