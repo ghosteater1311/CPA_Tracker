@@ -15,6 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # Install Ninja for faster builds
+      - name: Setup Ninja
+        uses: seanmiddleditch/gha-setup-ninja@v3
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
@@ -23,14 +27,14 @@ jobs:
       - name: Configure & Build
         run: |
           mkdir build && cd build
-          cmake .. -DCMAKE_PREFIX_PATH=$Qt6_DIR -DCMAKE_BUILD_TYPE=Release
-          cmake --build . --config Release
+          cmake .. -G Ninja -DCMAKE_PREFIX_PATH=$Qt6_DIR -DCMAKE_BUILD_TYPE=Release
+          cmake --build .
 
       # Windows Deployment
       - name: Deploy Qt (Windows)
         if: matrix.os == 'windows-latest'
         run: |
-          cd build/Release
+          cd build
           windeployqt CPATracker.exe
 
       # macOS Deployment
@@ -45,11 +49,12 @@ jobs:
         if: matrix.os == 'ubuntu-22.04'
         run: |
           sudo apt-get update
-          sudo apt-get install -y libfuse2
+          sudo apt-get install -y libfuse2 libxcb-cursor0
           wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
           chmod +x linuxdeployqt-continuous-x86_64.AppImage
           ./linuxdeployqt-continuous-x86_64.AppImage build/CPATracker -appimage
 
+      # Upload built artifacts
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -58,4 +63,3 @@ jobs:
             build/**/*.exe
             build/**/*.app
             build/**/*.AppImage
-            
