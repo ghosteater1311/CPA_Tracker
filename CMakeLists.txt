@@ -35,6 +35,8 @@ add_executable(CPATracker MACOSX_BUNDLE
     ${HEADERS}
 )
 
+set_target_properties(CPATracker PROPERTIES OUTPUT_NAME "CPATracker")
+
 # Tell the compiler where to find headers
 target_include_directories(CPATracker PRIVATE
     ${CMAKE_SOURCE_DIR}/gui
