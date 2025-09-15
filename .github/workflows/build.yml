@@ -61,5 +61,5 @@ jobs:
           path: |
             build/**/*.exe
             build/**/*.app
-            build/**/*.AppImage
+            build/*.AppImage
             
