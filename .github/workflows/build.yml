@@ -55,6 +55,7 @@ jobs:
             -desktop-file=build/CPATracker.desktop \
             -icon=build/CPATracker.png
 
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:

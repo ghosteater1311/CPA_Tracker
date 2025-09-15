@@ -35,6 +35,7 @@ add_executable(CPATracker MACOSX_BUNDLE
     ${HEADERS}
 )
 
+# Force output name to be CPATracker (capitalized everywhere)
 set_target_properties(CPATracker PROPERTIES OUTPUT_NAME "CPATracker")
 
 # Tell the compiler where to find headers
@@ -50,3 +51,12 @@ target_link_libraries(CPATracker PRIVATE
     Qt6::Gui
     Qt6::Widgets
 )
+
+# Install binary
+install(TARGETS CPATracker DESTINATION bin)
+
+# Install desktop entry
+install(FILES CPATracker.desktop DESTINATION share/applications)
+
+# Install icon
+install(FILES CPATracker.png DESTINATION share/icons/hicolor/256x256/apps)

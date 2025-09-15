@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=CPA Tracker
-Comment=Track and calculate your CPA (Cumulative Performance Average)
+Name=CPATracker
+Comment=Course & CPA Calculation Tool
 Exec=CPATracker
 Icon=CPATracker
 Terminal=false
