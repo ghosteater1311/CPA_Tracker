@@ -52,6 +52,7 @@ jobs:
           cp resources/CPATracker.desktop build/
           cp resources/icons/CPATracker.png build/
           ./linuxdeployqt-continuous-x86_64.AppImage build/CPATracker -appimage -verbose=2
+          mv CPATracker-*.AppImage build/CPATracker-${{ github.ref_name }}-x86_64.AppImage
           ls -lh build 
 
       - name: Show build outputs
@@ -76,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: CPATracker-Linux
-          path: build/CPATracker-*.AppImage
+          path: build/CPATracker-${{ github.ref_name }}-x86_64.AppImage
           if-no-files-found: error
           compression-level: 6
           overwrite: false
