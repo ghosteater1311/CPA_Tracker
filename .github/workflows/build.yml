@@ -3,7 +3,7 @@ name: Build CPATracker
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*'   # Run workflow on version tags like v1.0, v1.1 etc.
 
 jobs:
   build:
@@ -20,24 +20,27 @@ jobs:
         with:
           version: '6.6.0'
 
-      - name: Build
+      - name: Configure & Build
         run: |
           mkdir build && cd build
-          cmake .. -DCMAKE_PREFIX_PATH=$Qt6_DIR
+          cmake .. -DCMAKE_PREFIX_PATH=$Qt6_DIR -DCMAKE_BUILD_TYPE=Release
           cmake --build . --config Release
 
+      # Windows Deployment
       - name: Deploy Qt (Windows)
         if: matrix.os == 'windows-latest'
         run: |
           cd build/Release
           windeployqt CPATracker.exe
 
+      # macOS Deployment
       - name: Deploy Qt (macOS)
         if: matrix.os == 'macos-latest'
         run: |
           cd build
           macdeployqt CPATracker.app
 
+      # Linux Deployment
       - name: Deploy Qt (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
@@ -45,10 +48,14 @@ jobs:
           sudo apt-get install -y libfuse2
           wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
           chmod +x linuxdeployqt-continuous-x86_64.AppImage
-          ./linuxdeployqt-continuous-x86_64.AppImage build/CPATracker -appimage
+          ./linuxdeployqt-continuous-x86_64.AppImage build/cpatracker -appimage
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: CPATracker-${{ matrix.os }}
-          path: build/**
+          path: |
+            build/**/*.exe
+            build/**/*.app
+            build/**/*.AppImage
+            build/cpatracker
