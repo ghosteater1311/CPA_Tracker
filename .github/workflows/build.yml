@@ -3,7 +3,7 @@ name: Build CPATracker
 on:
   push:
     tags:
-      - 'v1.0'
+      - 'v*'
 
 jobs:
   build:
@@ -25,6 +25,25 @@ jobs:
           mkdir build && cd build
           cmake .. -DCMAKE_PREFIX_PATH=$Qt6_DIR
           cmake --build . --config Release
+
+      - name: Deploy Qt (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          cd build/Release
+          windeployqt CPATracker.exe
+
+      - name: Deploy Qt (macOS)
+        if: matrix.os == 'macos-latest'
+        run: |
+          cd build
+          macdeployqt CPATracker.app
+
+      - name: Deploy Qt (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+          chmod +x linuxdeployqt-continuous-x86_64.AppImage
+          ./linuxdeployqt-continuous-x86_64.AppImage build/CPATracker -appimage
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
