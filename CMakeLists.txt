@@ -32,6 +32,11 @@ set(HEADERS
 
 add_executable(cpatracker ${SOURCES} ${HEADERS})
 
+add_executable(CPATracker MACOSX_BUNDLE
+    ${SOURCES}
+    ${HEADERS}
+)
+
 # Tell the compiler where to find headers
 target_include_directories(cpatracker PRIVATE
     ${CMAKE_SOURCE_DIR}/gui
