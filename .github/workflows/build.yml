@@ -59,7 +59,12 @@ jobs:
         with:
           name: CPATracker-${{ matrix.os }}
           path: |
-            build/**/*.exe
-            build/**/*.app
-            build/*.AppImage
+            build/**/*.exe        # Windows
+            build/**/*.app        # macOS
+            build/*.AppImage      # Linux
+          if-no-files-found: warn
+          compression-level: 6
+          overwrite: false
+          include-hidden-files: false
+
             
