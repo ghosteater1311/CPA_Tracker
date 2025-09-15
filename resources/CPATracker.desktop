@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=CPA Tracker
+Comment=Track and calculate your CPA (Cumulative Performance Average)
+Exec=CPATracker
+Icon=CPATracker
+Terminal=false
+Type=Application
+Categories=Education;Utility;
