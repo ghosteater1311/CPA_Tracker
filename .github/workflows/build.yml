@@ -36,7 +36,7 @@ jobs:
 
       # macOS Deployment
       - name: Deploy Qt (macOS)
-        if: matrix.os == 'macos-latest'
+        if: matrix.os == 'macos-13'
         run: |
           cd build
           macdeployqt CPATracker.app
