@@ -5,7 +5,7 @@ CPA Tracker is a cross-platform desktop application (Windows / macOS / Linux) bu
 It allows students to manage and calculate their **Course Performance Average (CPA)** easily, with features like:
 - Add, edit, and remove courses.
 - Manage grades (with GPA scale 0.0 – 4.0 and alphabet mapping).
-- Search courses by **Code** or **Name** (Code using Binary Search).
+- Search courses by **Code** or **Name** (using Binary Search).
 - Sort courses (by Code using HeapSort, or Name using IntroSort).
 - Import/export course list to CSV files.
 - Cross-platform support (Qt6 + CMake).
