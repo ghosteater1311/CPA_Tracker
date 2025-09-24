@@ -74,7 +74,7 @@ When first run:
 
 <!-- LICENSE -->
 ## 📜 License
-Distributed under the GPL-3.0 license. 
+Distributed under the CCAC-SA 4.0 license. 
 See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
