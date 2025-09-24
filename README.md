@@ -71,6 +71,8 @@ When first run:
 
 ### Demo
 
+https://github.com/user-attachments/assets/298c23f6-b68b-4c4d-beaf-73de84a14a4f
+
 
 <!-- LICENSE -->
 ## 📜 License
